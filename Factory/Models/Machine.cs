@@ -7,7 +7,8 @@ namespace Factory.Models
 	{
 		public Machine()
 		{
-			this.JoinEngMach = new HashSet<EngineerMachine>();			
+			this.JoinEngMach = new HashSet<EngineerMachine>();
+			this.JoinIncident = new HashSet<Incident>();
 		}
 
 		public int MachineId {get; set;}
@@ -17,5 +18,6 @@ namespace Factory.Models
 		public bool Functional {get; set;}
 		public bool BeingRepaired {get; set;}
 		public virtual ICollection<EngineerMachine> JoinEngMach {get; set;}
+		public virtual ICollection<Incident> JoinIncident {get; set;}
 	}
 }
