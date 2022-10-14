@@ -34,6 +34,12 @@ else
 	</ul>
 }
 
+@using (Html.BeginForm("AddIncident", "Machines"))
+{
+	@Html.Hidden("id", (int) Model.MachineId)
+	<input type="submit" value="Report a mechanical failure"/>
+}
+
 @using (Html.BeginForm("Delete", "Machines"))
 {
 	@Html.Hidden("id", (int) Model.MachineId)

@@ -10,7 +10,7 @@ namespace Factory.Models
 		public int EngineerId {get; set;}
 		public string MalfunctionDate {get; set;}
 		public string RepairDate {get; set;}
-		public bool Repaired {get; set;}
+		public bool Open {get; set;}
 		public virtual Engineer Engineer {get; set;}
 		public virtual Machine Machine {get; set;}
 	}

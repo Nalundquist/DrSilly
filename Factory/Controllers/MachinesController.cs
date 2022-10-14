@@ -92,5 +92,26 @@ namespace Factory.Controllers
 			_db.SaveChanges();
 			return RedirectToAction("Index");
 		}
+
+		public ActionResult AddIncident(int id)
+		{
+			Machine thisMachine = _db.Machines
+				.Include(machine => machine.JoinEngMach)
+				.ThenInclude(join => join.Machine)
+				.FirstOrDefault(machine => machine.MachineId == id);
+			ViewBag.EngineerId = new SelectList(thisMachine.JoinEngMach.ToList(), "EngineerId", "Name");
+			return View(thisMachine);
+		}
+
+		[HttpPost]
+		public ActionResult AddIncident(Machine machine, int EngineerId, string MalfunctionDate)
+		{
+			if (EngineerId != 0)
+			{
+				_db.Incidents.Add(new Incident() {MachineId = machine.MachineId, EngineerId = EngineerId, MalfunctionDate = MalfunctionDate});
+				_db.SaveChanges(); 
+			}
+			return RedirectToAction("Details", new {id=machine.MachineId});
+		}
 	}
 }
