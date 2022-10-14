@@ -11,6 +11,8 @@
 
 <p><strong>Next Inspection:</strong> @Model.InspectDate</p>
 
+<p><strong>Currently Online:</strong> @Model.Functional | <strong>Being Repaired:</strong> @Model.BeingRepaired</p>
+
 <p><strong>Engineers qualified to repair @Model.Name:</strong></p>
 
 @if (Model.JoinEngMach.Count == 0)

@@ -14,6 +14,10 @@
 	@Html.EditorFor(model => model.Function)
 	@Html.Label("Next Inspection Date:")
 	@Html.EditorFor(model => model.InspectDate)
+	@Html.Label("Currently Functional?")
+	@Html.EditorFor(model => model.Functional)
+	@Html.Label("Being Repaired?")
+	@Html.EditorFor(model => model.BeingRepaired)
 	<input type="submit" value="Confirm Revisions!">
 }
 
