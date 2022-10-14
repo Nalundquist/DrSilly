@@ -1,14 +1,15 @@
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace Factory.Models
 {
-	public class FactoryContext : Context
+	public class FactoryContext : DbContext
 	{
 		public DbSet<Machine> Machines {get; set;}
 		public DbSet<Engineer> Engineers {get; set;}
-		public DbSet<MachineEngineer> MachineEngineer {get; set;} 
+		public DbSet<EngineerMachine> EngineerMachine {get; set;} 
 
-		public FactoryContext (DbContext options) : base(options) {}
+		public FactoryContext (DbContext options) : base(options) { }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{

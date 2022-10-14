@@ -7,7 +7,7 @@ using Factory.Models;
 
 namespace Factory.Controllers
 {
-	public class HomeController : controller
+	public class HomeController : Controller
 	{
 		private readonly FactoryContext _db;
 		public HomeController(FactoryContext db)
@@ -23,8 +23,8 @@ namespace Factory.Controllers
 		public ActionResult List()
 		{
 			List<Engineer> engineers = _db.Engineers.ToList();
-			List<Machines> machines = _db.Machines.ToList();
-			Dictionary<string, List> model = new Dictionary<string, List>;
+			List<Machine> machines = _db.Machines.ToList();
+			Dictionary<string, List<Model>> model = new Dictionary<string, List<Model>> {};
 			model.Add("engineers", engineers);
 			model.Add("machines", machines);
 			return View(model);

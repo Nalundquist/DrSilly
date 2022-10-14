@@ -7,7 +7,7 @@ using Factory.Models;
 
 namespace Factory.Controllers
 {
-	public class EngineersController : Controllers
+	public class EngineersController : Controller
 	{
 		private readonly FactoryContext _db;
 		public EngineersController(FactoryContext db)
