@@ -23,11 +23,8 @@ namespace Factory.Controllers
 		public ActionResult List()
 		{
 			List<Engineer> engineers = _db.Engineers.ToList();
-			List<Machine> machines = _db.Machines.ToList();
-			Dictionary<string, List<Model>> model = new Dictionary<string, List<Model>> {};
-			model.Add("engineers", engineers);
-			model.Add("machines", machines);
-			return View(model);
+			ViewBag.MachineList = _db.Machines.ToList();
+			return View(engineers);
 		} 
 	}
 }

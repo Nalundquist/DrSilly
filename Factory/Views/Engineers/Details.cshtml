@@ -1,5 +1,5 @@
 @{
-	Layout = "_Layout"
+	Layout = "_Layout";
 }
 
 @using Factory.Models;
@@ -23,18 +23,18 @@ else
 		@foreach (var join in Model.JoinEngMach)
 		{
 			<li>@Html.ActionLink($"{join.Machine.Name}", "Details", "Machines", new {id = join.Machine.MachineId}) </li>
-		}
-		@using (Html.BeginForm("DeleteMachine", "Machine"))
-		{
-			@Html.Hidden("joinId", join.Machine.MachineEngineerId)
-			<input type="submit" value="Delete" onclick="return confirm('Are you sure you want to remove this Machine from this workload?')"/>
+			@using (Html.BeginForm("DeleteMachine", "Machine"))
+			{
+				@Html.Hidden("joinId", (int) join.MachineEngineerId)
+				<input type="submit" value="Delete" onclick="return confirm('Are you sure you want to remove this Machine from this workload?')"/>
+			}
 		}
 	</ul>
 }
 
 @using (Html.BeginForm("Delete"))
 {
-	@Html.Hidden("id", Model.EngineerId)
+	@Html.Hidden("id", (int) Model.EngineerId)
 	<input type="submit" value="Delete this Engineer" onclick="return confirm('Are you sure you want to remove records of this engineer?')"/>
 }
 
