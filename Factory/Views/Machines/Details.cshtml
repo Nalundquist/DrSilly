@@ -33,7 +33,16 @@ else
 		}
 	</ul>
 }
-
+@if (Model.JoinIncident.Count != 0)
+{
+	<p><strong>Prior incidents with @Model.Name</strong></p>
+	<ul>
+		@foreach (var join in Model.JoinIncident)
+		{
+			<li>@Html.ActionLink($"{join.MalfunctionDate}", "Details", "Incidents", new {id = join.IncidentId})</li>
+		}
+	</ul>
+}
 <p>@Html.ActionLink("Report a Mechanical Failure", "AddIncident", new {id = Model.MachineId})</p>
 
 @using (Html.BeginForm("Delete", "Machines"))

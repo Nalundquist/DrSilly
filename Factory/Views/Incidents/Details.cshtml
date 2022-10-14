@@ -15,4 +15,5 @@ else
 	<p>This incident was resolved on @Model.RepairDate.</p>
 }
 
+<p>@Html.ActionLink("Edit details of this repair event", "Edit", new {id = Model.IncidentId})</p>
 <p>@Html.ActionLink("Return to Machine Details", "Details", "Machines", new {id = Model.Machine.MachineId})</p>

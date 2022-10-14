@@ -37,6 +37,8 @@ namespace Factory.Controllers
 		public ActionResult Details(int id)
 		{
 			Machine thisMachine = _db.Machines
+				.Include(machine => machine.JoinIncident)
+				.ThenInclude(join => join.Machine)
 				.Include(machine => machine.JoinEngMach)
 				.ThenInclude(join => join.Machine)
 				.FirstOrDefault(machine => machine.MachineId == id);
@@ -99,19 +101,20 @@ namespace Factory.Controllers
 				.Include(machine => machine.JoinEngMach)
 				.ThenInclude(join => join.Machine)
 				.FirstOrDefault(machine => machine.MachineId == id);
-			ViewBag.EngineerId = new SelectList(thisMachine.JoinEngMach.ToList(), "EngineerId", "Name");
+			ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
 			return View(thisMachine);
 		}
 
 		[HttpPost]
-		public ActionResult AddIncident(Machine machine, int EngineerId, string MalfunctionDate)
-		{
+		public ActionResult AddIncident(int id, int EngineerId, string MalfunctionDate)
+		{	
+			Machine thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
 			if (EngineerId != 0)
 			{
-				_db.Incidents.Add(new Incident() {MachineId = machine.MachineId, EngineerId = EngineerId, MalfunctionDate = MalfunctionDate});
+				_db.Incidents.Add(new Incident() {MachineId = thisMachine.MachineId, EngineerId = EngineerId, MalfunctionDate = MalfunctionDate});
 				_db.SaveChanges(); 
 			}
-			return RedirectToAction("Details", new {id=machine.MachineId});
+			return RedirectToAction("Details", new {id=thisMachine.MachineId});
 		}
 	}
 }

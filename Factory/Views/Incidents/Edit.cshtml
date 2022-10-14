@@ -13,9 +13,9 @@
 	@Html.EditorFor(model => model.MalfunctionDate)
 	@Html.Label("Assigned Repair Technician:")
 	@Html.DropDownList("EngineerId")
-	@Html.Label("Is the repair currently Open?")
+	@Html.Label("Is the repair resolved?")
 	@Html.EditorFor(model => model.Open)
-	@Html.Label("If not, when was the repair completed?")
+	@Html.Label("If yes, when was the repair completed?")
 	@Html.EditorFor(model => model.RepairDate)
 	<input type="submit" value="Submit revisions"/>
 }
