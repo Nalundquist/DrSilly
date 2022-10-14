@@ -25,7 +25,7 @@ else
 			<li>@Html.ActionLink($"{join.Engineer.Name}", "Details", "Engineer", new {id = join.Engineer.EngineerId}) </li>
 			@using (Html.BeginForm("DeleteEngineer", "Engineer"))
 			{
-				@Html.Hidden("joinId", (int) join.MachineEngineerId)
+				@Html.Hidden("joinId", (int) join.EngineerMachineId)
 				<input type="submit" value="Delete" onclick="return confirm('Are you sure you want to remove this Engineer from this Machine?')"/>
 			}
 		}

@@ -76,8 +76,11 @@ namespace Factory.Controllers
 		[HttpPost]
 		public ActionResult AddMachine(Engineer engineer, int MachineId)
 		{
-			_db.EngineerMachine.Add(new EngineerMachine() {EngineerId = engineer.EngineerId, MachineId = MachineId});
-			_db.SaveChanges();
+			if (MachineId != 0)
+			{
+				_db.EngineerMachine.Add(new EngineerMachine() {EngineerId = engineer.EngineerId, MachineId = MachineId});
+				_db.SaveChanges();
+			}
 			return RedirectToAction("Details", new {id = engineer.EngineerId});
 		}
 
