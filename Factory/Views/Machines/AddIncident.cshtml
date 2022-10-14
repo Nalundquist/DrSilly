@@ -2,13 +2,13 @@
 	Layout = "_Layout";
 }
 
-@model Factory.Models.Incident
+@model Factory.Models.Machine
 
-<h4>Report a Mechanical Failure with @Model.Machine.Name</h4>
+<h4>Report a Mechanical Failure with @Model.Name</h4>
 
 @using (Html.BeginForm())
 {
-	@Html.Hidden("machine", Model.Machine)
+	@Html.Hidden("machine", Model)
 	@Html.Label("Date of Malfunction/Break")
 	@Html.TextBox("MalfunctionDate")
 	@Html.Label("Assigned Repair Technician")

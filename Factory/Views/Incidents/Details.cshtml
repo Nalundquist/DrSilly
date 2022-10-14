@@ -1,0 +1,18 @@
+@{
+	Layout = "_Layout";
+}
+
+<h4>Details on the @Model.MalfunctionDate incident with @Model.Machine.Name</h4>
+
+<p><strong>Mechanic assigned to repair: </strong>@Model.Machine.Name</p>
+
+@if (Model.Open == true)
+{
+	<p>Repair is currently still underway.</p>
+}
+else
+{
+	<p>This incident was resolved on @Model.RepairDate.</p>
+}
+
+<p>@Html.ActionLink("Return to Machine Details", "Details", "Machines", new {id = Model.Machine.MachineId})</p>

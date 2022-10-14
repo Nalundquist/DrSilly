@@ -1,0 +1,24 @@
+@{
+	Layout = "_Layout";
+}
+
+@model Factory.Models.Incident
+
+<h4>Update or Edit details of the @Model.MalfunctionDate incident with @Model.Machine.Name:</h4>
+
+@using (Html.BeginForm())
+{
+	@Html.HiddenFor(model => model.IncidentId)
+	@Html.Label("Date of Malfunction/Break:")
+	@Html.EditorFor(model => model.MalfunctionDate)
+	@Html.Label("Assigned Repair Technician:")
+	@Html.DropDownList("EngineerId")
+	@Html.Label("Is the repair currently Open?")
+	@Html.EditorFor(model => model.Open)
+	@Html.Label("If not, when was the repair completed?")
+	@Html.EditorFor(model => model.RepairDate)
+	<input type="submit" value="Submit revisions"/>
+}
+
+<p>@Html.ActionLink("Return to Incident Details", "Details", new {id = Model.IncidentId})
+<p>@Html.ActionLink("Return to Machine Details", "Details", "Machines", new {id = Model.Machine.MachineId})</p>
