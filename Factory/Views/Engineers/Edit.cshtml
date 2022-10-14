@@ -1,0 +1,23 @@
+@{
+	Layout = "_Layout"
+}
+@model Factory.Models.Engineer
+
+<h3>Revise the details on our fine engineer @Model.Name</h3>
+
+@using (Html.BeginForm())
+{
+	@Html.HiddenFor(model => model.EngineerId)
+	@Html.LabelFor(model => model.Name)
+	@Html.EditorFor(model => model.Name)
+	@Html.LabelFor(model => model.Expertise)
+	@Html.EditorFor(model => model.Expertise)
+	@Html.Label("Currently on a repair?")
+	@Html.EditorFor(model => model.Busy)
+	@Html.Label("Licensure lapses:")
+	@Html.EditorFor(model => model.LicRenew)
+	<input type="submit" label="Submit Revisions!"/>
+}
+
+<p>@Html.ActionLink("Return to Details for this Engineer", "Details", new {id = Model.EngineerId})</p>
+

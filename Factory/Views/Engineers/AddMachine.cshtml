@@ -1,0 +1,14 @@
+@{
+	Layout = "_Layout"
+}
+
+@model Factory.Models.Engineer
+
+<h3>Add a Machine to the Workload of @Model.Name</h3>
+
+@using (Html.BeginForm())
+{
+	@Html.Label("Machine:")
+	@Html.DropDownList("MachineId")
+	<input type="submit" value="Add Machine"/>
+}

@@ -1,0 +1,43 @@
+@{
+	Layout = "_Layout"
+}
+
+@using Factory.Models;
+
+<h3>Details on @Model.Name:</h3>
+
+<p><strong>Field of Expertise:</strong></p>
+<p>@Model.Expertise</p>
+
+<p><strong>On Repair?:</strong> @Model.Busy | <strong>License Valid Until:</strong> @Model.LicRenew</p>
+
+<p><strong>Machines @Model.Name is qualified to Repair:</strong></p>
+
+@if (Model.JoinEngMach.Count == 0)
+{
+	<p>@Model.Name does not currently have any machines under their purview!</p>
+}
+else
+{
+	<ul>
+		@foreach (var join in Model.JoinEngMach)
+		{
+			<li>@Html.ActionLink($"{join.Machine.Name}", "Details", "Machines", new {id = join.Machine.MachineId}) </li>
+		}
+		@using (Html.BeginForm("DeleteMachine", "Machine"))
+		{
+			@Html.Hidden("joinId", join.Machine.MachineEngineerId)
+			<input type="submit" value="Delete" onclick="return confirm('Are you sure you want to remove this Machine from this workload?')"/>
+		}
+	</ul>
+}
+
+@using (Html.BeginForm("Delete"))
+{
+	@Html.Hidden("id", Model.EngineerId)
+	<input type="submit" value="Delete this Engineer" onclick="return confirm('Are you sure you want to remove records of this engineer?')"/>
+}
+
+<p>@Html.ActionLink("Add a machine to this Engineer's Workload", "AddMachine", new {id = Model.EngineerId})</p>
+<p>@Html.ActionLink("Edit this Engineer's details", "Edit", new {id = Model.EngineerId})</p>
+

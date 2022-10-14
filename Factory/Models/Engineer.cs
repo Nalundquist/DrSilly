@@ -14,7 +14,7 @@ namespace Factory.Models
 		public string Name {get; set;}
 		public string Expertise {get; set;}
 		public bool Busy {get; set;}
-		public DateTime LicRenew {get; set;}
+		public string LicRenew {get; set;}
 		public virtual ICollection<EngineerMachine> JoinEngMach();
 	}
 }
