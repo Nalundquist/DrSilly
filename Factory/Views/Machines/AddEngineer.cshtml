@@ -1,0 +1,14 @@
+@{
+	Layout = "_Layout"
+}
+
+@model Factory.Models.Machine
+
+<h3>Add an Engineer to the repair team of @Model.Name</h3>
+
+@using (Html.BeginForm())
+{
+	@Html.Label("Engineer:")
+	@Html.DropDownList("EngineerId")
+	<input type="submit" value="Add Engineer"/>
+}
